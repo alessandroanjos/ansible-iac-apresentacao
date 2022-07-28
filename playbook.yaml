@@ -1,0 +1,22 @@
+---
+
+- name: Ping em todas as máquinas
+  hosts: all
+  remote_user: root
+  tasks:
+  - name: Execução do Ping 1
+    ping:
+  
+- name: Instalação e execucao do Nginx
+  hosts: nginx
+  remote_user: root
+  tasks: 
+    - name: Atualizar o apt e instalar o nginx
+      apt:
+        update_cache: yes
+        name: nginx
+        state: present
+    - name: Garantindo a execução do Nginx
+      service:
+        name: nginx
+        state: started
